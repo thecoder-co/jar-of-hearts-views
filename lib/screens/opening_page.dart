@@ -11,23 +11,27 @@ class OpeningPageScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: data.openingPage!.backgroundColor != null
-          ? Color(
-              int.parse(
-                data.openingPage!.backgroundColor!,
-              ),
-            )
-          : null,
       body: Container(
-        decoration: BoxDecoration(
-          color: data.openingPage!.backgroundColor != null
-              ? Color(
-                  int.parse(
-                    data.openingPage!.backgroundColor!,
-                  ),
-                )
-              : null,
-        ),
+        decoration: data.openingPage!.backgroundColor != null
+            ? BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    Color(
+                      int.parse(
+                        data.openingPage!.backgroundColor![0],
+                      ),
+                    ),
+                    Color(
+                      int.parse(
+                        data.openingPage!.backgroundColor![1],
+                      ),
+                    ),
+                  ],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                ),
+              )
+            : null,
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,

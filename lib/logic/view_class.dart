@@ -38,10 +38,13 @@ class Page {
     this.containerBorderColor,
     this.containerImage,
     this.text,
+    this.textColor,
     this.child,
+    this.buttonColor,
   });
 
   String? font;
+  String? buttonColor;
   List<String>? backgroundColor;
   String? backgroundImage;
   String? music;
@@ -49,6 +52,7 @@ class Page {
   String? containerBorderColor;
   String? containerImage;
   String? text;
+  String? textColor;
   Child? child;
 
   factory Page.fromJson(Map<String, dynamic> json) => Page(
@@ -61,6 +65,8 @@ class Page {
         containerBorderColor: json["container_border_color"],
         containerImage: json["container_image"],
         text: json["text"],
+        textColor: json["text_color"],
+        buttonColor: json["button_color"],
         child: json["child"] == null ? null : Child.fromJson(json["child"]),
       );
 
@@ -73,6 +79,7 @@ class Page {
         "container_border_color": containerBorderColor,
         "container_image": containerImage,
         "text": text,
+        "text_color": textColor,
         "child": child == null ? null : child!.toJson(),
       };
 }
@@ -111,6 +118,7 @@ class ViewDatum {
     this.font,
     this.backgroundColor,
     this.backgroundImage,
+    this.textColor,
     this.containerBorderColor,
     this.containerColor,
     this.containerImage,
@@ -121,6 +129,7 @@ class ViewDatum {
   String? font;
   String? backgroundColor;
   List<String>? backgroundImage;
+  String? textColor;
   String? containerBorderColor;
   String? containerColor;
   String? containerImage;
@@ -132,6 +141,7 @@ class ViewDatum {
         backgroundColor: json["background_color"],
         backgroundImage:
             List<String>.from(json["background_image"].map((x) => x)),
+        textColor: json["text_color"],
         containerBorderColor: json["container_border_color"],
         containerColor: json["container_color"],
         containerImage: json["container_image"],
@@ -143,6 +153,7 @@ class ViewDatum {
         "font": font,
         "background_color": backgroundColor,
         "background_image": List<dynamic>.from(backgroundImage!.map((x) => x)),
+        "text_color": textColor,
         "container_border_color": containerBorderColor,
         "container_color": containerColor,
         "container_image": containerImage,
