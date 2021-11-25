@@ -7,79 +7,24 @@ String viewToJson(View data) => json.encode(data.toJson());
 class View {
   View({
     this.globalFont,
-    this.hasOpening,
     this.openingPage,
     this.pages,
   });
 
   String? globalFont;
-  bool? hasOpening;
-  OpeningPage? openingPage;
+  Page? openingPage;
   List<Page>? pages;
 
   factory View.fromJson(Map<String, dynamic> json) => View(
         globalFont: json["global_font"],
-        hasOpening: json["has_opening"],
-        openingPage: OpeningPage.fromJson(json["opening_page"]),
+        openingPage: Page.fromJson(json["opening_page"]),
         pages: List<Page>.from(json["pages"].map((x) => Page.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
         "global_font": globalFont,
-        "has_opening": hasOpening,
         "opening_page": openingPage!.toJson(),
         "pages": List<dynamic>.from(pages!.map((x) => x.toJson())),
-      };
-}
-
-class OpeningPage {
-  OpeningPage(
-      {this.font,
-      this.backgroundColor,
-      this.backgroundImage,
-      this.music,
-      this.containerColor,
-      this.containerBorderColor,
-      this.containerImage,
-      this.text,
-      this.buttonColor,
-      this.textColor});
-
-  String? font;
-  String? backgroundColor;
-  String? backgroundImage;
-  String? music;
-  String? buttonColor;
-  String? containerColor;
-  String? containerBorderColor;
-  String? containerImage;
-  String? text;
-  String? textColor;
-
-  factory OpeningPage.fromJson(Map<String, dynamic> json) => OpeningPage(
-        font: json["font"],
-        backgroundColor: json["background_color"],
-        backgroundImage: json["background_image"],
-        music: json["music"],
-        containerColor: json["container_color"],
-        containerBorderColor: json["container_border_color"],
-        containerImage: json["container_image"],
-        text: json["text"],
-        buttonColor: json["button_color"],
-        textColor: json["text_color"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "font": font,
-        "background_color": backgroundColor,
-        "background_image": backgroundImage,
-        "music": music,
-        "container_color": containerColor,
-        "container_border_color": containerBorderColor,
-        "container_image": containerImage,
-        "text": text,
-        "button_color": buttonColor,
-        "text_color": textColor
       };
 }
 
@@ -88,6 +33,7 @@ class Page {
     this.font,
     this.backgroundColor,
     this.backgroundImage,
+    this.music,
     this.containerColor,
     this.containerBorderColor,
     this.containerImage,
@@ -96,8 +42,9 @@ class Page {
   });
 
   String? font;
-  String? backgroundColor;
+  List<String>? backgroundColor;
   String? backgroundImage;
+  String? music;
   String? containerColor;
   String? containerBorderColor;
   String? containerImage;
@@ -106,24 +53,27 @@ class Page {
 
   factory Page.fromJson(Map<String, dynamic> json) => Page(
         font: json["font"],
-        backgroundColor: json["background_color"],
+        backgroundColor:
+            List<String>.from(json["background_color"].map((x) => x)),
         backgroundImage: json["background_image"],
+        music: json["music"] == null ? null : json["music"],
         containerColor: json["container_color"],
         containerBorderColor: json["container_border_color"],
         containerImage: json["container_image"],
         text: json["text"],
-        child: Child.fromJson(json["child"]),
+        child: json["child"] == null ? null : Child.fromJson(json["child"]),
       );
 
   Map<String, dynamic> toJson() => {
         "font": font,
-        "background_color": backgroundColor,
+        "background_color": List<dynamic>.from(backgroundColor!.map((x) => x)),
         "background_image": backgroundImage,
+        "music": music == null ? null : music,
         "container_color": containerColor,
         "container_border_color": containerBorderColor,
         "container_image": containerImage,
         "text": text,
-        "child": child!.toJson(),
+        "child": child == null ? null : child!.toJson(),
       };
 }
 
@@ -170,7 +120,7 @@ class ViewDatum {
 
   String? font;
   String? backgroundColor;
-  String? backgroundImage;
+  List<String>? backgroundImage;
   String? containerBorderColor;
   String? containerColor;
   String? containerImage;
@@ -180,7 +130,8 @@ class ViewDatum {
   factory ViewDatum.fromJson(Map<String, dynamic> json) => ViewDatum(
         font: json["font"],
         backgroundColor: json["background_color"],
-        backgroundImage: json["background_image"],
+        backgroundImage:
+            List<String>.from(json["background_image"].map((x) => x)),
         containerBorderColor: json["container_border_color"],
         containerColor: json["container_color"],
         containerImage: json["container_image"],
@@ -191,7 +142,7 @@ class ViewDatum {
   Map<String, dynamic> toJson() => {
         "font": font,
         "background_color": backgroundColor,
-        "background_image": backgroundImage,
+        "background_image": List<dynamic>.from(backgroundImage!.map((x) => x)),
         "container_border_color": containerBorderColor,
         "container_color": containerColor,
         "container_image": containerImage,
