@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -32,47 +34,47 @@ class StartPage extends StatefulWidget {
 }
 
 class _StartPageState extends State<StartPage> {
-  String? rawData = r'''{
+  var rawData = json.encode({
     "global_font": "Nunito",
-    "opening_page" : {
-        "font" : "global_font",
-        "background_color" : ["0xff6699cc", "0xFF609162"],
-        "background_image" : "",
-        "music": "",
-        "container_color" : "",
-        "container_border_color" : "",
-        "container_image" : "",
-        "text": ""
+    "opening_page": {
+      "font": "global_font",
+      "background_color": ["0xff6699cc", "0xFF609162"],
+      "background_image": "",
+      "music": "",
+      "container_color": "",
+      "container_border_color": "",
+      "container_image": "",
+      "text": ""
     },
     "pages": [
-        {
-        "font" : "global_font",
-        "background_color" : [""],
-        "background_image" : "",
-        "container_color" : "",
-        "container_border_color" : "",
-        "container_image" : "",
+      {
+        "font": "global_font",
+        "background_color": [""],
+        "background_image": "",
+        "container_color": "",
+        "container_border_color": "",
+        "container_image": "",
         "text": "",
         "child": {
-            "background_color": "",
-            "background_image": "",
-            "music": "",
-            "view_data":[
-                {
-                    
-                    "font" : "global_font",
-                    "background_color" : "",
-                    "background_image" : [""],
-                    "container_border_color" : "",
-                    "container_color" : "",
-                    "container_image" : "",
-                    "text": "",
-                    "bottom_text": ""
-    }       
-            ]}
-    }
-        ]
-}''';
+          "background_color": "",
+          "background_image": "",
+          "music": "",
+          "view_data": [
+            {
+              "font": "global_font",
+              "background_color": "",
+              "background_image": [""],
+              "container_border_color": "",
+              "container_color": "",
+              "container_image": "",
+              "text": "",
+              "bottom_text": ""
+            }
+          ]
+        }
+      }
+    ]
+  });
 
   @override
   Widget build(BuildContext context) {
